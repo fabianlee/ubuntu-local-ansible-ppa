@@ -1,0 +1,11 @@
+---
+  - name: "Testing local connection and apt"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    - name: "Show versions of ansible available from apt"
+      shell: "apt-cache policy ansible"
+      register: "output"
+
+    - debug: var=output.stdout_lines

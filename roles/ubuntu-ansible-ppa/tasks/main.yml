@@ -1,0 +1,18 @@
+# https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu
+---
+- name: Install add-apt-repostory
+  become: yes
+  apt: name=software-properties-common state=latest
+
+- name: Add Ansible ppa
+  become: yes
+  apt_repository: repo='ppa:ansible/ansible'
+
+- name: Install Ansible from ppa
+  become: yes
+  apt:
+    name: ansible
+    state: latest
+  #apt: name={{item}} state=latest
+  #with_items:
+  #- ansible

@@ -1,0 +1,8 @@
+# host with aliases
+localhost ansible_connection=local
+
+[ansibleppa]
+localhost
+
+#[all:vars]
+#ansible_user=ubuntu
