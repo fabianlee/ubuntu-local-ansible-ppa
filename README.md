@@ -16,8 +16,14 @@ cd ubuntu-local-ansible-ppa
 ./1-ansible-ping.sh
 # verify current version and source
 ./2-check-localppa.sh
-# install ansible from ppa
+
+# check if password required for sudo
+sudo ls /tmp
+
+# install ansible from ppa, no password required for sudo
 ./3-install-localppa.sh
+# if password required for sudo, pass using 'ansible_sudo_pass'
+./3-install-localppa.sh MyP4ss!
 
 # validate newer version
 ansible --version
