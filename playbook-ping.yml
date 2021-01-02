@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    playbook_myuser: foo-playbook
+#  vars_prompt:
+#  - name: ansible_ssh_pass
+#    prompt: "For the localhost test, what is the password for user $(whoami) ?"
+#    private: no
+  tasks:
+  - name: do ping
+    action: ping
+#  - name: show variable
+#    debug:
+#      msg: hello, I'm pulling {{host_myuser}} from host level variables, and {{playbook_myuser}} from playbook level variables
