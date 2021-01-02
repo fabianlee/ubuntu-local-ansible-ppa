@@ -1,6 +1,6 @@
-### Uses Ansible installation from universe repo to install latest Ansible from ppa
+# Uses Ansible installation from universe repo to install latest Ansible from ppa
 
-
+```
 # install ansible from Ubuntu universe repo, older
 sudo apt-get update
 sudo apt-get install ansible -y
@@ -21,6 +21,7 @@ cd ubuntu-local-ansible-ppa
 
 # validate newer version
 ansible --version
+```
 
 
 
