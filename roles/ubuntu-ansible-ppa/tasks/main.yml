@@ -4,9 +4,24 @@
   become: yes
   apt: name=software-properties-common state=latest
 
-- name: Add Ansible ppa
+- name: Add Ansible ppa, direct internet
   become: yes
-  apt_repository: repo='ppa:ansible/ansible'
+  apt_repository: repo='ppa:ansible/ansible' state=present update_cache=yes
+  when: not apt_proxy is defined
+
+- name: Add Ansible Repo Key
+  become: yes
+  command: apt-key adv --keyserver-options http-proxy={{apt_proxy}} --keyserver keyserver.ubuntu.com --recv-keys 6125e2a8c77f2818fb7bd15b93c4a3fd7bb9c367
+  when: apt_proxy is defined
+
+- name: Add Ansible ppa, proxy
+  become: yes
+  apt_repository: repo='ppa:ansible/ansible' state=present update_cache=yes
+  environment:
+    http_proxy: "{{apt_proxy}}"
+    https_proxy: "{{apt_proxy}}"
+    APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE: DontWarn
+  when: apt_proxy is defined
 
 - name: Install Ansible from ppa
   become: yes
