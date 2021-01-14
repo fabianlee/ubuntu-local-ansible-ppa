@@ -9,6 +9,8 @@
   apt_repository: repo='ppa:ansible/ansible' state=present update_cache=yes
   when: not apt_proxy is defined
 
+# https://launchpad.net/~ansible/+archive/ubuntu/ansible
+# determining key from ppa page, https://blog.zackad.dev/en/2017/08/17/add-ppa-simple-way.html
 - name: Add Ansible Repo Key
   become: yes
   command: apt-key adv --keyserver-options http-proxy={{apt_proxy}} --keyserver keyserver.ubuntu.com --recv-keys 6125e2a8c77f2818fb7bd15b93c4a3fd7bb9c367
